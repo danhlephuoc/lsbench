@@ -1,3 +1,7 @@
 #summary Benchmark use case and Data Generator
 
+==Stream Data Schema==
+
 http://lsbench.googlecode.com/files/data-schema.png
+
+==How to run the Data Generator==
