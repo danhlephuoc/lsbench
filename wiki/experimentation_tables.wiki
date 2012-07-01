@@ -1,4 +1,4 @@
-#Tables showing results of functionality, correctness and performance tests
+==Tables showing results of functionality, correctness and performance tests==
 
 http://lsbench.googlecode.com/files/queries.png
 
