@@ -1,4 +1,4 @@
-#summary How to run CQELS.
+#summary How to run CQELS
 
 = Introduction =
 
