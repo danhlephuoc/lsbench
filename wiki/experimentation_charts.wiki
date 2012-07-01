@@ -1,4 +1,4 @@
-==Charts showing experimental results for scalability test==
+#summary Charts showing experimental results for scalability test
 
 === Scalability wrt Static Datasize ===
 
