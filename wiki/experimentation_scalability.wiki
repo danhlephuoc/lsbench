@@ -1,15 +1,5 @@
-#summary One-sentence summary of this page.
+#Experimental results for scalability test.
 
-= Introduction =
-
-Add your content here.
-
-
-= Details =
-
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+=== Scalability wrt static datasize ===
 
 http://lsbench.googlecode.com/files/query2-datasize.png
