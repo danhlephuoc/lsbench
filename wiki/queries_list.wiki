@@ -28,3 +28,5 @@ users liking a post posted by a creator in last two hours.
 
 *Query 12* _Aggregation with top k_: Get 10 top hottest tags in
 last two hours.
+
+http://lsbench.googlecode.com/files/queries.png
