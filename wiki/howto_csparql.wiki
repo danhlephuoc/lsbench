@@ -1,4 +1,4 @@
-#summary How to run CSPARQL.
+#summary How to run CSPARQL
 
 = Introduction =
 
