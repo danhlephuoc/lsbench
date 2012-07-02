@@ -1,13 +1,24 @@
 #summary How to run CQELS
 
-= Introduction =
+= Multiple query tests =
 
-Add your content here.
+For multiple query test, download the jar file at , 
 
-
+An example [ script] for setting parameters for this test as shown below
 = Details =
+{{{
+export MINMEM=4096
+export MAXMEM=8192
+export RATE=multiple
+export HOMEDIR=/home/danphu/iswc2012eval/cqels
+export DATA=/home/danphu/data
+export OUTPUT=/home/danphu/iswc2012eval/cqels/scripts
+export STATIC=$4
+export STRLEN=$3
+export NOUSER=$2
+export i=$1
+export NOQUERY=$5
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+java -Xms${MINMEM}m -Xmx${MAXMEM}m -jar cqelsmulti.jar query$i $HOMEDIR/$RATE $DATA $OUTPUT $NOUSER $STRLEN $STATIC $NOQUERY >$OUTPUT/query$i/query$i-$NOQUERY-$NOUSER-$STRLEN-0.log 2>&1
+
+}}}
