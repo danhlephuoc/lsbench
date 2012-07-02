@@ -37,16 +37,15 @@ An example [http://lsbench.googlecode.com/files/cqelsmax.sh script] for setting 
 export MINMEM=4096
 export MAXMEM=8192
 export RATE=0
-export HOMEDIR=/home/danphu/iswc2012eval/cqels
+export HOMEDIR=/home/danphu/iswc2012eval/csparql
 export DATA=/home/danphu/data
-export OUTPUT=/home/danphu/iswc2012eval/cqels/scripts
-export STATIC=$4
+export OUTPUT=/home/danphu/iswc2012eval/csparql/scripts
 export STRLEN=$3
 export NOUSER=$2
 export i=$1
+export TIMEOUT=120
 
-java -Xms${MINMEM}m -Xmx${MAXMEM}m -jar cqelsmax.jar query$i $HOMEDIR/$RATE $DATA $OUTPUT $NOUSER $STRLEN $STATIC >$OUTPUT/query$i/query$i-$NOUSER-$STRLEN-$RATE.log 2>&1
-
+java -Xms${MINMEM}m -Xmx${MAXMEM}m -jar csparqlmax.jar query$i $HOMEDIR/$RATE $DATA $OUTPUT $NOUSER $STRLEN $TIMEOUT >$OUTPUT/query$i/query$i-$NOUSER-$STRLEN-$RATE.log 2>&1
 }}}
 
 = Multiple query tests =
@@ -59,15 +58,15 @@ An example [http://lsbench.googlecode.com/files/csparqlmulti.sh script] for sett
 export MINMEM=4096
 export MAXMEM=8192
 export RATE=multiple
-export HOMEDIR=/home/danphu/iswc2012eval/cqels
+export HOMEDIR=/home/danphu/iswc2012eval/csparql
 export DATA=/home/danphu/data
-export OUTPUT=/home/danphu/iswc2012eval/cqels/scripts
-export STATIC=$4
+export OUTPUT=/home/danphu/iswc2012eval/csparql/scripts
 export STRLEN=$3
 export NOUSER=$2
 export i=$1
-export NOQUERY=$5
+export NOQUERY=$4
+export TIMEOUT=60
 
-java -Xms${MINMEM}m -Xmx${MAXMEM}m -jar cqelsmulti.jar query$i $HOMEDIR/$RATE $DATA $OUTPUT $NOUSER $STRLEN $STATIC $NOQUERY >$OUTPUT/query$i/query$i-$NOQUERY-$NOUSER-$STRLEN-0.log 2>&1
+java -Xms${MINMEM}m -Xmx${MAXMEM}m -jar csparqlmulti.jar query$i $HOMEDIR/$RATE $DATA $OUTPUT $NOUSER $STRLEN $TIMEOUT $NOQUERY >$OUTPUT/query$i/query$i-$NOQUERY-$NOUSER-$STRLEN-0.log 2>&1
 
 }}}
