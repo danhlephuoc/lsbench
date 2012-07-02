@@ -1,10 +1,59 @@
 #summary How to run CQELS
 
+=Fixed rate  tests =
+
+For fixed rate query tests, download the jar file at http://lsbench.googlecode.com/files/cqelsrate.jar, 
+
+An example [http://lsbench.googlecode.com/files/cqelsrate.sh script] for setting parameters for a test as shown below
+= Details =
+{{{
+export MINMEM=4096
+export MAXMEM=8192
+export RATE=$2
+export HOMEDIR=/home/danphu/iswc2012eval/cqels
+export DATA=/home/danphu/data
+export OUTPUT=/home/danphu/iswc2012eval/cqels/scripts
+export STRLEN=month1
+export NOUSER=1000
+export q=$1
+export SLEEP=15
+
+
+echo "query $q at rate $2"
+
+java -Xms${MINMEM}m -Xmx${MAXMEM}m -jar cqelsrate.jar query$i $HOMEDIR/$RATE $DATA $OUTPUT $NOUSER $STRLEN true >$OUTPUT/query$q/query$q-$NOUSER-$STRLEN-$RATE.log 2>&1
+
+sleep $SLEEP
+
+}}}
+
+=Maximum rate tests =
+
+For maximum rate tests, download the jar file at http://lsbench.googlecode.com/files/cqelsmax.jar, 
+
+An example [http://lsbench.googlecode.com/files/cqelsmax.sh script] for setting parameters for a test as shown below
+= Details =
+{{{
+export MINMEM=4096
+export MAXMEM=8192
+export RATE=0
+export HOMEDIR=/home/danphu/iswc2012eval/cqels
+export DATA=/home/danphu/data
+export OUTPUT=/home/danphu/iswc2012eval/cqels/scripts
+export STATIC=$4
+export STRLEN=$3
+export NOUSER=$2
+export i=$1
+
+java -Xms${MINMEM}m -Xmx${MAXMEM}m -jar cqelsmax.jar query$i $HOMEDIR/$RATE $DATA $OUTPUT $NOUSER $STRLEN $STATIC >$OUTPUT/query$i/query$i-$NOUSER-$STRLEN-$RATE.log 2>&1
+
+}}}
+
 = Multiple query tests =
 
-For multiple query test, download the jar file at http://lsbench.googlecode.com/files/cqelsmulti.jar, 
+For multiple query tests, download the jar file at http://lsbench.googlecode.com/files/cqelsmulti.jar, 
 
-An example [ script] for setting parameters for this test as shown below
+An example [http://lsbench.googlecode.com/files/cqelsmulti.sh script] for setting parameters for a test as shown below
 = Details =
 {{{
 export MINMEM=4096
