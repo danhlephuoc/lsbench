@@ -2,7 +2,7 @@
 
 = Multiple query tests =
 
-For multiple query test, download the jar file at , 
+For multiple query test, download the jar file at http://lsbench.googlecode.com/files/cqelsmulti.jar, 
 
 An example [ script] for setting parameters for this test as shown below
 = Details =
