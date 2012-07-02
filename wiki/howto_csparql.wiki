@@ -16,7 +16,7 @@ export OUTPUT=/home/danphu/iswc2012eval/csparql/scripts
 export STRLEN=$3
 export NOUSER=1000
 export q=$1
-echo " query $i at rate $2 "
+echo " query $q at rate $2 "
 
 java -Xms${MINMEM}m -Xmx${MAXMEM}m -jar csparqlrate.jar query$q $HOMEDIR/$RATE $DATA $OUTPUT $NOUSER $STRLEN  >$OUTPUT/query$q/query$q-$NOUSER-$STRLEN-$RATE.log 2>&1
 
