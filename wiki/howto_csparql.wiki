@@ -10,18 +10,19 @@ An example [http://lsbench.googlecode.com/files/csparqlrate.sh script] for setti
 export MINMEM=4096
 export MAXMEM=8192
 export RATE=$2
-export HOMEDIR=/home/danphu/iswc2012eval/cqels
+export HOMEDIR=/home/danphu/iswc2012eval/csparql
 export DATA=/home/danphu/data
-export OUTPUT=/home/danphu/iswc2012eval/cqels/scripts
-export STRLEN=month1
+export OUTPUT=/home/danphu/iswc2012eval/csparql/scripts
+export STRLEN=$3
 export NOUSER=1000
 export q=$1
-export SLEEP=15
+echo " query $i at rate $2 "
 
+java -Xms${MINMEM}m -Xmx${MAXMEM}m -jar csparqlrate.jar query$q $HOMEDIR/$RATE $DATA $OUTPUT $NOUSER $STRLEN  >$OUTPUT/query$q/query$q-$NOUSER-$STRLEN-$RATE.log 2>&1
 
-echo "query $q at rate $2"
+sleep $SLEEP
+done
 
-java -Xms${MINMEM}m -Xmx${MAXMEM}m -jar cqelsrate.jar query$i $HOMEDIR/$RATE $DATA $OUTPUT $NOUSER $STRLEN true >$OUTPUT/query$q/query$q-$NOUSER-$STRLEN-$RATE.log 2>&1
 
 sleep $SLEEP
 
