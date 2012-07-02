@@ -1,13 +1,73 @@
 #summary How to run CSPARQL
 
-= Introduction =
+=Fixed rate  tests =
 
-Add your content here.
+For fixed rate query tests, download the jar file at http://lsbench.googlecode.com/files/csparqlrate.jar, 
 
-
+An example [http://lsbench.googlecode.com/files/csparqlrate.sh script] for setting parameters for a test as shown below
 = Details =
+{{{
+export MINMEM=4096
+export MAXMEM=8192
+export RATE=$2
+export HOMEDIR=/home/danphu/iswc2012eval/cqels
+export DATA=/home/danphu/data
+export OUTPUT=/home/danphu/iswc2012eval/cqels/scripts
+export STRLEN=month1
+export NOUSER=1000
+export q=$1
+export SLEEP=15
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+
+echo "query $q at rate $2"
+
+java -Xms${MINMEM}m -Xmx${MAXMEM}m -jar cqelsrate.jar query$i $HOMEDIR/$RATE $DATA $OUTPUT $NOUSER $STRLEN true >$OUTPUT/query$q/query$q-$NOUSER-$STRLEN-$RATE.log 2>&1
+
+sleep $SLEEP
+
+}}}
+
+=Maximum rate tests =
+
+For maximum rate tests, download the jar file at http://lsbench.googlecode.com/files/csparqlmax.jar, 
+
+An example [http://lsbench.googlecode.com/files/cqelsmax.sh script] for setting parameters for a test as shown below
+= Details =
+{{{
+export MINMEM=4096
+export MAXMEM=8192
+export RATE=0
+export HOMEDIR=/home/danphu/iswc2012eval/cqels
+export DATA=/home/danphu/data
+export OUTPUT=/home/danphu/iswc2012eval/cqels/scripts
+export STATIC=$4
+export STRLEN=$3
+export NOUSER=$2
+export i=$1
+
+java -Xms${MINMEM}m -Xmx${MAXMEM}m -jar cqelsmax.jar query$i $HOMEDIR/$RATE $DATA $OUTPUT $NOUSER $STRLEN $STATIC >$OUTPUT/query$i/query$i-$NOUSER-$STRLEN-$RATE.log 2>&1
+
+}}}
+
+= Multiple query tests =
+
+For multiple query tests, download the jar file at http://lsbench.googlecode.com/files/csparqlmulti.jar, 
+
+An example [http://lsbench.googlecode.com/files/csparqlmulti.sh script] for setting parameters for a test as shown below
+= Details =
+{{{
+export MINMEM=4096
+export MAXMEM=8192
+export RATE=multiple
+export HOMEDIR=/home/danphu/iswc2012eval/cqels
+export DATA=/home/danphu/data
+export OUTPUT=/home/danphu/iswc2012eval/cqels/scripts
+export STATIC=$4
+export STRLEN=$3
+export NOUSER=$2
+export i=$1
+export NOQUERY=$5
+
+java -Xms${MINMEM}m -Xmx${MAXMEM}m -jar cqelsmulti.jar query$i $HOMEDIR/$RATE $DATA $OUTPUT $NOUSER $STRLEN $STATIC $NOQUERY >$OUTPUT/query$i/query$i-$NOQUERY-$NOUSER-$STRLEN-0.log 2>&1
+
+}}}
