@@ -24,5 +24,7 @@ http://lsbench.googlecode.com/files/data-schema.png
 ==How to run the Data Generator==
 
 1. Download the Data Generator at http://lsbench.googlecode.com/files/sibStream0617.tar
+
 2. Extract the tar file
+
 3. The guideline for how run the generator can be found in the file HowToGenerateStreamdata.txt
