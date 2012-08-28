@@ -1,0 +1,87 @@
+#summary Query Encoding in CQELS.
+
+*Query 1*
+{{{
+PREFIX sib:<http://www.ins.cwi.nl/sib/vocabulary/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX sioc: <http://rdfs.org/sioc/ns#>
+select ?p ?o
+where{ 
+  STREAM <http://deri.org/poststream> [RANGE 1s]
+  {<http://www.ins.cwi.nl/sib/user/u984> ?p ?o.}
+}
+}}}
+
+*Query 2*
+{{{
+PREFIX sib:<http://www.ins.cwi.nl/sib/vocabulary/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX sioc: <http://rdfs.org/sioc/ns#>
+select ?post
+where{ 
+  STREAM <http://deri.org/poststream> [RANGE 1s]
+  {?user sioc:creator_of ?post.}
+  ?user sioc:account_of <http://www.ins.cwi.nl/sib/person/p984>. 
+}
+}}}
+
+*Query 3*
+{{{
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX sioc: <http://rdfs.org/sioc/ns#>
+select ?friend ?post
+where{ 
+  STREAM <http://deri.org/poststream> [RANGE 5s]{
+  ?friend sioc:creator_of ?post.
+  }
+  ?user foaf:knows ?friend.
+  ?user sioc:account_of <http://www.ins.cwi.nl/sib/person/p984>. 
+}
+}}}
+
+*Query 4*
+{{{
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX sib:<http://www.ins.cwi.nl/sib/vocabulary/>
+PREFIX sioc: <http://rdfs.org/sioc/ns#>
+select ?post1 ?post2 ?tag
+where{ 
+  STREAM <http://deri.org/poststream> [RANGE 15s]
+  {?post1 sib:hashtag ?tag. ?user sioc:creator_of ?post1.} 
+  STREAM <http://deri.org/poststream> [RANGE 15s]
+  {?post2 sib:hashtag ?tag. ?user sioc:creator_of ?post2.}
+  FILTER(?post1 !=?post2)
+}
+}}}
+
+*Query 5*
+{{{
+PREFIX sib:<http://www.ins.cwi.nl/sib/vocabulary/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+select ?friend1 ?friend2 ?photo
+where{ 
+  STREAM <http://deri.org/likedphotostream> [RANGE 100ms]
+  {?friend2 sib:like ?photo. }
+  STREAM <http://deri.org/photostream> [RANGE 1m ]
+  {?photo sib:usertag ?friend1.}
+  ?friend1 foaf:knows ?friend2.
+}
+}}}
+
+*Query 6*
+{{{
+PREFIX sib:<http://www.ins.cwi.nl/sib/vocabulary/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX sioc: <http://rdfs.org/sioc/ns#>
+select ?user ?friend ?post ?channel
+where{ 
+  STREAM <http://deri.org/poststream> [RANGE 1m]
+  {
+    ?channel sioc:container_of ?post. 
+  }
+  STREAM <http://deri.org/likedpoststream> [RANGE 100ms]
+  {?friend sib:like ?post.}
+  ?user foaf:knows ?friend. 
+  ?user sioc:subscriber_of ?channel.
+}
+}}}
