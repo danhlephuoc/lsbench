@@ -1,4 +1,13 @@
 #summary Query Encoding.
 
-= Introduction =
-
+Query 1
+{{{
+PREFIX sib:<http://www.ins.cwi.nl/sib/vocabulary/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX sioc: <http://rdfs.org/sioc/ns#>
+select ?p ?o
+where{ 
+  STREAM <http://deri.org/poststream> [RANGE 1s]
+  {<http://www.ins.cwi.nl/sib/user/u984> ?p ?o.}
+}
+}}}
