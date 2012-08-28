@@ -2,7 +2,7 @@
 
 *Query 1*
 {{{
-PREFIX sib:<http://www.ins.cwi.nl/sib/vocabulary/>
+PREFIX sib:  <http://www.ins.cwi.nl/sib/vocabulary/>
 PREFIX foaf: <http://xmlns.com/foaf/0.1/>
 PREFIX sioc: <http://rdfs.org/sioc/ns#>
 select ?p ?o
@@ -14,7 +14,7 @@ where{
 
 *Query 2*
 {{{
-PREFIX sib:<http://www.ins.cwi.nl/sib/vocabulary/>
+PREFIX sib:  <http://www.ins.cwi.nl/sib/vocabulary/>
 PREFIX foaf: <http://xmlns.com/foaf/0.1/>
 PREFIX sioc: <http://rdfs.org/sioc/ns#>
 select ?post
@@ -42,7 +42,7 @@ where{
 *Query 4*
 {{{
 PREFIX foaf: <http://xmlns.com/foaf/0.1/>
-PREFIX sib:<http://www.ins.cwi.nl/sib/vocabulary/>
+PREFIX sib:  <http://www.ins.cwi.nl/sib/vocabulary/>
 PREFIX sioc: <http://rdfs.org/sioc/ns#>
 select ?post1 ?post2 ?tag
 where{ 
@@ -56,7 +56,7 @@ where{
 
 *Query 5*
 {{{
-PREFIX sib:<http://www.ins.cwi.nl/sib/vocabulary/>
+PREFIX sib:  <http://www.ins.cwi.nl/sib/vocabulary/>
 PREFIX foaf: <http://xmlns.com/foaf/0.1/>
 select ?friend1 ?friend2 ?photo
 where{ 
@@ -70,7 +70,7 @@ where{
 
 *Query 6*
 {{{
-PREFIX sib:<http://www.ins.cwi.nl/sib/vocabulary/>
+PREFIX sib:  <http://www.ins.cwi.nl/sib/vocabulary/>
 PREFIX foaf: <http://xmlns.com/foaf/0.1/>
 PREFIX sioc: <http://rdfs.org/sioc/ns#>
 select ?user ?friend ?post ?channel
