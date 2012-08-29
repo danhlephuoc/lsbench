@@ -1,5 +1,7 @@
 #summary Query Encoding in ETALIS.
 
+Note that this page provides only the query encoding in terms of ETALIS rules. To run the query from JTALIS requires further configuration steps. We refer the reader to [http://code.google.com/p/lsbench/wiki/howto_jtalis the instructions on how to run JTALIS].
+
 *Query 1*
 {{{
 result(Action, Object) <- stream_post(User, Action, Object) where check_user(User).
