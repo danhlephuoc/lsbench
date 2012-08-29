@@ -6,3 +6,13 @@ result(Action, Object) <- stream_post(User, Action, Object) where check_user(Use
 
 check_user(sibu_u984).
 }}}
+
+*Query 2*
+{{{
+result(Post) <- stream_post(Creator, sioc_creator_of, Post) 
+	     	where ( static(Creator, sioc_account_of, Person),
+		        check_person(Person) 
+		      ).
+
+check_person(sibp_p984).
+}}}
