@@ -40,3 +40,12 @@ inter_result(Post1, Post2, Tag) <-
       seq
       (stream_post(Creator, sioc_creator_of, Post2) seq stream_post(Post2, sib_hashtag, Tag)).
 }}}
+
+*Query 10*
+{{{
+r1([property(window, 15), property(window_step,0.01)]) 'rule:'
+result(Tag, 1) <- stream_post(_, sib_hashtag, Tag).
+
+r2([property(window, 15), property(window_step,0.01)]) 'rule:'
+result(Tag,N2) <- result(Tag,N1) seq stream_post(_, sib_hashtag, Tag) where (N2 is N1+1).
+}}}
