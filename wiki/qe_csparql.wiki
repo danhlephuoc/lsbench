@@ -30,5 +30,66 @@ where{
 
 *Query 3*
 {{{
+REGISTER QUERY Query3 AS
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX sioc: <http://rdfs.org/sioc/ns#>
+select ?friend ?post
+from <file:////Users/danh/GoogleDrive/SIB/sib.rdf>
+from STREAM <http://deri.org/poststream> [RANGE 1s STEP 1ms]
+where{ 
+  ?friend sioc:creator_of ?post.
+  ?user sioc:account_of <http://www.ins.cwi.nl/sib/person/p984>. 
+  ?user foaf:knows ?friend.
+}
+}}}
 
+*Query 4*
+{{{
+REGISTER QUERY Query4 AS
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX sib:  <http://www.ins.cwi.nl/sib/vocabulary/>
+PREFIX sioc: <http://rdfs.org/sioc/ns#>
+select ?post1 ?post2 ?tag
+from STREAM <http://deri.org/poststream> [RANGE 15s STEP 1ms]
+where{ 
+  ?post1 sib:hashtag ?tag. 
+  ?post2 sib:hashtag ?tag.
+  ?user  sioc:creator_of ?post1.
+  ?user  sioc:creator_of ?post2.
+  filter (?post1 !=?post2)
+}
+}}}
+
+*Query 5*
+{{{
+REGISTER QUERY Query5 AS
+PREFIX sib:  <http://www.ins.cwi.nl/sib/vocabulary/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+select ?friend1 ?friend2 ?photo
+from <file:///Users/danh/GoogleDrive/SIB/sib.rdf>
+from STREAM <http://deri.org/likedphotostream> [RANGE 100ms STEP 10ms]
+from STREAM <http://deri.org/photostream> [RANGE 1m STEP 1s]
+where{ 
+ ?photo sib:usertag ?friend1.
+ ?friend2 sib:like ?photo.
+ ?friend1 foaf:knows ?friend2
+}
+}}}
+
+*Query 6*
+{{{
+REGISTER QUERY Query6 AS
+PREFIX sib:  <http://www.ins.cwi.nl/sib/vocabulary/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX sioc: <http://rdfs.org/sioc/ns#>
+select ?user ?friend ?post ?channel
+from <file:////Users/danh/GoogleDrive/SIB/sib.rdf>
+from STREAM <http://deri.org/poststream> [RANGE 1m STEP 1s]
+from STREAM <http://deri.org/likedpoststream> [RANGE 100ms STEP 10ms]
+where { 
+  ?user foaf:knows ?friend.
+  ?user sioc:subscriber_of ?channel.
+  ?friend sib:like ?post.
+  ?channel sioc:container_of ?post. 
+}
 }}}
