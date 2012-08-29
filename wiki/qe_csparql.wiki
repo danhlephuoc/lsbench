@@ -1,0 +1,34 @@
+#summary Query Encoding in CSPARQL.
+
+*Query 1*
+{{{
+REGISTER QUERY Query1 AS
+PREFIX sib:  <http://www.ins.cwi.nl/sib/vocabulary/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX sioc: <http://rdfs.org/sioc/ns#>
+select ?p ?o
+from STREAM <http://deri.org/poststream> [RANGE 1s STEP 100ms]
+where{ 
+  <http://www.ins.cwi.nl/sib/user/u984> ?p ?o.
+}
+}}}
+
+*Query 2*
+{{{
+REGISTER QUERY Query2 AS
+PREFIX sib:  <http://www.ins.cwi.nl/sib/vocabulary/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX sioc: <http://rdfs.org/sioc/ns#>
+select ?post
+from <file:////Users/danh/GoogleDrive/SIB/sib.rdf>
+from STREAM <http://deri.org/poststream> [RANGE 1s STEP 1ms]
+where{ 
+  ?user sioc:creator_of ?post.
+  ?user sioc:account_of <http://www.ins.cwi.nl/sib/person/p984>. 
+}
+}}}
+
+*Query 3*
+{{{
+
+}}}
