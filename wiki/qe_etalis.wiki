@@ -1,0 +1,8 @@
+#summary Query Encoding in ETALIS.
+
+*Query 1*
+{{{
+result(Action, Object) <- stream_post(User, Action, Object) where check_user(User).
+
+check_user(sibu_u984).
+}}}
