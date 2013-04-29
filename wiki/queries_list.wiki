@@ -23,7 +23,7 @@ minutes.
 
 *Query 10* _Simple Aggregation_: Count the number of post having a certain tag in the last 15 seconds.
 
-*Query 11* _ore complicate aggregation_: Get average number of
+*Query 11* _More complicate aggregation_: Get average number of
 users liking a post posted by a creator in last two hours.
 
 *Query 12* _Aggregation with top k_: Get 10 top hottest tags in
