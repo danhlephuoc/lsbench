@@ -1,0 +1,28 @@
+## Stream Data Schema ##
+
+The data schema is illustrated by a data snapshot in Figure 1. This snapshot has two
+layers for stream data and static data corresponding to what users continuously generate
+from their social network activities and user metadata including user profiles, social
+network relationships, etc. The details of these two layers are described below.
+Stream data. that is updated or arrives frequently, is shown in the bottom layer. It
+contains various sources of streaming data:
+
+> GPS stream (Sgps ): inspired by the use case in Live Social Semantics [1](1.md), we assume that each user has a GPS tracking device to send updated information about her current location to the SN frequently. This information contains latitude/longitude of the user’s position, e.g., the location of an event where user is attending, and the sending time.
+
+> Posts and comments stream (Spc): there is a huge stream of posts and comments in the SN as users start or join discussions. Similar to the availability of the “wall” for each Facebook user or the “Tweet timeline” for each Twitter, every user in our generated SN has her own forum for writing posts. People who subscribe to this forum (or “follow” the forum moderator as in Twitter) can read and reply to the posts and comments created in the forum. Each forum is used as a channel for the posting stream of a user. In this stream, we are particularly interested in the stream of “likes” (i.e., people who show their interest in a post), denoted by Spclike , the stream of tags (i.e., set of words representing the content of the discussion), denoted by Stags .
+
+> Photos stream (Sfo ): Uploaded photos and their associated attributes provide interestinginformation for discovering user habits, friend relationships, etc. In this stream, we focus on exploiting useful information from the stream of user tagged in a photo, Sfotags , and the stream of likes per photo, denoted by Sfolike.
+
+Static data. Udata , that is not frequently changed or updated, is shown in the upper
+layer. It contains user profile information (name, date of birth, relationship status, etc.),
+the relationships between users and the channel where they write posts, comments.
+
+![http://lsbench.googlecode.com/files/data-schema.png](http://lsbench.googlecode.com/files/data-schema.png)
+
+## How to run the Data Generator ##
+
+1. Download the Data Generator at http://lsbench.googlecode.com/files/sibStream0617.tar
+
+2. Extract the tar file
+
+3. The guideline for how run the generator can be found in the file HowToGenerateStreamdata.txt

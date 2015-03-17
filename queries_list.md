@@ -1,0 +1,30 @@
+**Query 1** _Simple selection on a single window_: Notify  posts having a certain hash tag.
+
+**Query 2** _Selection with static data, filter by join from static data_: Notify all posts that have been posted by a person, given the person's name.
+
+**Query 3** _Stream and static join_: Notify all posts from friends of a person, given the person's name.
+
+**Query 4** _Two streams joint without static data (1 join)_: Notify the posts posted from a user that have a same hash tag within 15 seconds.
+
+**Query 5** _Two streams and graph join (2 joins)_: Notify a user having been tagged in a photo within a day that a friend of his/her has just liked the photo.
+
+**Query 6** _Join two streams and two static patterns_: Notify a person ($someone$) all the posts liked by his friends on the channels that he subscribes to.
+
+**Query 7** _Join three streams (4+ joins)_: Notify a user all
+the friends having been tagged in the photo taken nearby his location
+within 1 day and the photo has been liked by someone in last 15
+minutes.
+
+**Query 8** _Join with negation_: Recommends possible friends that are tagged in the photos. Notify a person tagged in photo a person that has liked the photo but is not in his friend list.
+
+**Query 9** _Join and union_: Notify all the posts and photos liked by friends of my friends.
+
+**Query 10** _Simple Aggregation_: Count the number of post having a certain tag in the last 15 seconds.
+
+**Query 11** _More complicate aggregation_: Get average number of
+users liking a post posted by a creator in last two hours.
+
+**Query 12** _Aggregation with top k_: Get 10 top hottest tags in
+last two hours.
+
+![http://lsbench.googlecode.com/files/queries.png](http://lsbench.googlecode.com/files/queries.png)

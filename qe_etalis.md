@@ -1,0 +1,51 @@
+Note that this page provides only the query encoding in terms of ETALIS rules. To run the query from JTALIS requires further configuration steps. We refer the reader to [the instructions on how to run JTALIS](http://code.google.com/p/lsbench/wiki/howto_jtalis).
+
+**Query 1**
+```
+result(Action, Object) <- stream_post(User, Action, Object) where check_user(User).
+
+check_user(sibu_u984).
+```
+
+**Query 2**
+```
+result(Post) <- stream_post(Creator, sioc_creator_of, Post) 
+	     	where ( static(Creator, sioc_account_of, Person),
+		        check_person(Person) 
+		      ).
+
+check_person(sibp_p984).
+```
+
+**Query 3**
+```
+result(Creator, Post) <- stream_post(Creator, sioc_creator_of, Post)
+	     	      	 where ( static(User, foaf_knows, Creator),
+			       	 static(User, sioc_account_of, Person),
+	     	      	 	 check_person(Person) 
+  			       ).
+
+check_person(sibp_p984).
+```
+
+**Query 4**
+```
+% For the sake of associativity
+result(Pos1, Pos2, Tag) <- inter_result(Pos1, Pos2, Tag).
+result(Pos2, Pos1, Tag) <- inter_result(Pos1, Pos2, Tag).
+
+r1([property(window, 15)]) 'rule:'
+inter_result(Post1, Post2, Tag) <- 
+      (stream_post(Creator, sioc_creator_of, Post1) seq stream_post(Post1, sib_hashtag, Tag)) 
+      seq
+      (stream_post(Creator, sioc_creator_of, Post2) seq stream_post(Post2, sib_hashtag, Tag)).
+```
+
+**Query 10**
+```
+r1([property(window, 15), property(window_step,0.01)]) 'rule:'
+result(Tag, 1) <- stream_post(_, sib_hashtag, Tag).
+
+r2([property(window, 15), property(window_step,0.01)]) 'rule:'
+result(Tag,N2) <- result(Tag,N1) seq stream_post(_, sib_hashtag, Tag) where (N2 is N1+1).
+```

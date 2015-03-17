@@ -1,0 +1,15 @@
+### Scalability wrt Static Datasize ###
+
+![http://lsbench.googlecode.com/files/query2-datasize.png](http://lsbench.googlecode.com/files/query2-datasize.png)
+
+![http://lsbench.googlecode.com/files/query3-datasize.png](http://lsbench.googlecode.com/files/query3-datasize.png)
+
+![http://lsbench.googlecode.com/files/query5-datasize.png](http://lsbench.googlecode.com/files/query5-datasize.png)
+
+### Scalability wrt Number of Queries ###
+
+![http://lsbench.googlecode.com/files/query3-multiple.png](http://lsbench.googlecode.com/files/query3-multiple.png)
+
+![http://lsbench.googlecode.com/files/query4-multiple.png](http://lsbench.googlecode.com/files/query4-multiple.png)
+
+![http://lsbench.googlecode.com/files/query10-multiple.png](http://lsbench.googlecode.com/files/query10-multiple.png)

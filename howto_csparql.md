@@ -1,0 +1,71 @@
+# Fixed rate  tests #
+
+For fixed rate query tests, download the jar file at http://lsbench.googlecode.com/files/csparqlrate.jar,
+
+An example [script](http://lsbench.googlecode.com/files/csparqlrate.sh) for setting parameters for a test as shown below
+# Details #
+```
+export MINMEM=4096
+export MAXMEM=8192
+export RATE=$2
+export HOMEDIR=/home/danphu/iswc2012eval/csparql
+export DATA=/home/danphu/data
+export OUTPUT=/home/danphu/iswc2012eval/csparql/scripts
+export STRLEN=$3
+export NOUSER=1000
+export q=$1
+echo " query $q at rate $2 "
+
+java -Xms${MINMEM}m -Xmx${MAXMEM}m -jar csparqlrate.jar query$q $HOMEDIR/$RATE $DATA $OUTPUT $NOUSER $STRLEN  >$OUTPUT/query$q/query$q-$NOUSER-$STRLEN-$RATE.log 2>&1
+
+sleep $SLEEP
+done
+
+
+sleep $SLEEP
+
+```
+
+# Maximum rate tests #
+
+For maximum rate tests, download the jar file at http://lsbench.googlecode.com/files/csparqlmax.jar,
+
+An example [script](http://lsbench.googlecode.com/files/cqelsmax.sh) for setting parameters for a test as shown below
+# Details #
+```
+export MINMEM=4096
+export MAXMEM=8192
+export RATE=0
+export HOMEDIR=/home/danphu/iswc2012eval/csparql
+export DATA=/home/danphu/data
+export OUTPUT=/home/danphu/iswc2012eval/csparql/scripts
+export STRLEN=$3
+export NOUSER=$2
+export i=$1
+export TIMEOUT=120
+
+java -Xms${MINMEM}m -Xmx${MAXMEM}m -jar csparqlmax.jar query$i $HOMEDIR/$RATE $DATA $OUTPUT $NOUSER $STRLEN $TIMEOUT >$OUTPUT/query$i/query$i-$NOUSER-$STRLEN-$RATE.log 2>&1
+```
+
+# Multiple query tests #
+
+For multiple query tests, download the jar file at http://lsbench.googlecode.com/files/csparqlmulti.jar,
+
+An example [script](http://lsbench.googlecode.com/files/csparqlmulti.sh) for setting parameters for a test as shown below
+# Details #
+```
+export MINMEM=4096
+export MAXMEM=8192
+export RATE=multiple
+export HOMEDIR=/home/danphu/iswc2012eval/csparql
+export DATA=/home/danphu/data
+export OUTPUT=/home/danphu/iswc2012eval/csparql/scripts
+export STRLEN=$3
+export NOUSER=$2
+export i=$1
+export NOQUERY=$4
+export TIMEOUT=60
+
+java -Xms${MINMEM}m -Xmx${MAXMEM}m -jar csparqlmulti.jar query$i $HOMEDIR/$RATE $DATA $OUTPUT $NOUSER $STRLEN $TIMEOUT $NOQUERY >$OUTPUT/query$i/query$i-$NOQUERY-$NOUSER-$STRLEN-0.log 2>&1
+
+```
